@@ -23,14 +23,14 @@ All of these shader properties are exposed so the character can have lots of dif
 Finally, I used Unity's built in animation system to add some gentle up and down "breathing" movement and blinking. 
 
 ## Firelight effect 
-The glowing firelight effect around the player is a custom post processing material rendered over the main image. I referenced these two great tutorials by [Ronja](https://www.ronja-tutorials.com/post/018-postprocessing-normal/) and [Harry Alisavakis](https://halisavakis.com/my-take-on-shaders-spherical-mask-post-processing-effect/) to create this.
+The glowing firelight effect around the player is a custom post processing material rendered over the main image. I referenced two great tutorials by [Ronja](https://www.ronja-tutorials.com/post/018-postprocessing-normal/) and [Harry Alisavakis](https://halisavakis.com/my-take-on-shaders-spherical-mask-post-processing-effect/) to create this.
 
 It works by grabbing the depthnormal texture from the camera and referencing the player position to color a sphere around it. I use a dot product comparison between the normal texture and the direction to the player to determine if the pixel should be colored. These parameters are all set in a postprocessing script attached to the camera. 
 
 ## Environment 
 I modelled the environment in Blender and textured it using Substance Designer. 
 
-The trees have a custom shader that maps color to height so they can be easily customized and still look uniform. 
+The trees have a custom shader that maps height to color so they can be easily customized and still look uniform. 
 
 The jars have a simple shader that uses varying color banding with fresnel to create a fake highlight and stylized glass appearance. 
 
