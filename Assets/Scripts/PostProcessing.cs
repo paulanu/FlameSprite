@@ -13,35 +13,49 @@ public class PostProcessing : MonoBehaviour {
 
     // public variables 
     public Material material;
+    public Transform player;
     public Color color; 
     [Range(0.0f, 10.0f)]
     public float radius = 0.5f;
+    public Color flickerColor; 
+    [Range(0.0f, 10.0f)]
+    public float flickerRadius = 0.5f;
     [Range(0.0f, 1f)]
     public float normalThreshold = 0.5f;
     [Range(0.0f, 10.0f)]
-    public float waveRange = 0.5f;
-    public float waveSpeed = 1;
+    public float flickerRange = 0.5f;
+    [Range(0.0f, 10.0f)]
+    public float flickerSpeed = 1;
     public float softness = 0.5f;
+    public Texture noise; 
  
     // private shader properties 
+    private int shPropPlayerPos;
     private int shPropColor;
     private int shPropRadius;
+    private int shPropFlickerColor;
+    private int shPropFlickerRadius;
     private int shPropNormalThreshold;
-    private int shPropWaveRange;
-    private int shPropWaveSpeed;
+    private int shPropFlickerRange;
+    private int shPropFlickerSpeed;
     private int shPropSoftness;
+    private int shPropNoise;
 
     private new Camera camera;
     void OnEnable () {
         camera = GetComponent<Camera>();
         camera.depthTextureMode = camera.depthTextureMode | DepthTextureMode.DepthNormals;
 
+        shPropPlayerPos = Shader.PropertyToID("_PlayerPos");
         shPropColor = Shader.PropertyToID("_Color");
         shPropRadius = Shader.PropertyToID("_Radius");
+        shPropFlickerColor = Shader.PropertyToID("_FlickerColor");
+        shPropFlickerRadius = Shader.PropertyToID("_FlickerRadius");
         shPropNormalThreshold = Shader.PropertyToID("_NormalThreshold");
-        shPropWaveRange = Shader.PropertyToID("_WaveRange");
-        shPropWaveSpeed = Shader.PropertyToID("_WaveSpeed");
+        shPropFlickerRange = Shader.PropertyToID("_flickerRange");
+        shPropFlickerSpeed = Shader.PropertyToID("_flickerSpeed");
         shPropSoftness = Shader.PropertyToID("_Softness");
+        shPropNoise = Shader.PropertyToID("_Noise");
 
     }
  
@@ -59,14 +73,18 @@ public class PostProcessing : MonoBehaviour {
         material.SetMatrix("_viewToWorld", viewToWorld);
 
         // apply shader customization  
+        material.SetVector (shPropPlayerPos, player.position);
         material.SetColor (shPropColor, color);
         material.SetFloat (shPropRadius, radius);
+        material.SetColor (shPropFlickerColor, flickerColor);
+        material.SetFloat (shPropFlickerRadius, flickerRadius);
         material.SetFloat (shPropNormalThreshold, normalThreshold);
-        material.SetFloat (shPropWaveRange, waveRange);
-        material.SetFloat (shPropWaveSpeed, waveSpeed);
+        material.SetFloat (shPropFlickerRange, flickerRange);
+        material.SetFloat (shPropFlickerSpeed, flickerSpeed);
         material.SetFloat (shPropSoftness, softness);
+        material.SetTexture (shPropNoise, noise);
 
-        // apply pp material 
+        // apply post processing material 
         Graphics.Blit (src, dest, material);
     }
  

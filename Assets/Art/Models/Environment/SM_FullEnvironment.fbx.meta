@@ -18,6 +18,114 @@ ModelImporter:
   - first:
       74: 808447442567988808
     second: potion bottle string.004|Cylinder.001Action.017
+  - first:
+      74: -6785120270492004589
+    second: string|Cylinder.001Action
+  - first:
+      74: 5530882791064831281
+    second: string|Cylinder.001Action.003
+  - first:
+      74: 4459125925143579521
+    second: string|Cylinder.001Action.006
+  - first:
+      74: 2082027687895595387
+    second: string|Cylinder.001Action.007
+  - first:
+      74: 6255554166513920776
+    second: string|Cylinder.001Action.008
+  - first:
+      74: 2226687492810248555
+    second: string|Cylinder.001Action.012
+  - first:
+      74: -4909169663796686860
+    second: string|Cylinder.001Action.017
+  - first:
+      74: 66126734388109041
+    second: string|Sphere.072Action
+  - first:
+      74: -6258790667255200114
+    second: string|Sphere.072Action.002
+  - first:
+      74: 6157950471418302184
+    second: string.002|Sphere.072Action
+  - first:
+      74: -7838744361681088668
+    second: string.002|Sphere.072Action.002
+  - first:
+      74: 8833187473001119335
+    second: mason jar string|Sphere.072Action
+  - first:
+      74: 6619835605634499023
+    second: mason jar string|Sphere.072Action.002
+  - first:
+      74: 1075530123177866555
+    second: potion bottle string.002|Cylinder.001Action
+  - first:
+      74: 8739256958803485215
+    second: potion bottle string.002|Cylinder.001Action.003
+  - first:
+      74: 4216966326209719078
+    second: potion bottle string.002|Cylinder.001Action.006
+  - first:
+      74: -3288099072190803720
+    second: potion bottle string.002|Cylinder.001Action.007
+  - first:
+      74: -2564576911296401438
+    second: potion bottle string.002|Cylinder.001Action.008
+  - first:
+      74: -6449444208493893895
+    second: potion bottle string.002|Cylinder.001Action.012
+  - first:
+      74: -645804392101594907
+    second: potion bottle string.002|Cylinder.001Action.017
+  - first:
+      74: 6513009333472928225
+    second: potion bottle string.002|Sphere.072Action
+  - first:
+      74: 4253653833302172518
+    second: potion bottle string.002|Sphere.072Action.002
+  - first:
+      74: 3402574505249633197
+    second: string.007|Sphere.072Action
+  - first:
+      74: 6838777090712774905
+    second: string.007|Sphere.072Action.002
+  - first:
+      74: 4239783334086758669
+    second: mason jar string.003|Sphere.072Action
+  - first:
+      74: -1383597583772850702
+    second: mason jar string.003|Sphere.072Action.002
+  - first:
+      74: -7833297215117883454
+    second: potion bottle string.004|Sphere.072Action
+  - first:
+      74: -2966531217010155800
+    second: potion bottle string.004|Sphere.072Action.002
+  - first:
+      74: -8802852398625438724
+    second: mug|mugAction
+  - first:
+      74: 2357212117003253249
+    second: mug|Sphere.072Action
+  - first:
+      74: 7401177685970836037
+    second: mug|Sphere.072Action.002
+  - first:
+      74: -5201911208440684901
+    second: Sphere.072|mugAction
+  - first:
+      74: 6605799194616715845
+    second: Sphere.072|Sphere.072Action
+  - first:
+      74: 6592571272909487572
+    second: Sphere.072|Sphere.072Action.002
+  - first:
+      74: -1999307456757101949
+    second: Sphere.092|Sphere.072Action
+  - first:
+      74: 1473450242576825293
+    second: Sphere.092|Sphere.072Action.002
   externalObjects: {}
   materials:
     materialImportMode: 2

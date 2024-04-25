@@ -10,11 +10,14 @@ Shader "Unlit/FirelightPostProcessing"
         [HideInInspector]_MainTex ("Texture", 2D) = "white" {}
         [HideInInspector]_PlayerPos ("Player pos", Vector) = (1,1,1)
         [HideInInspector]_Color ("Fire Color", Color) = (1,1,1,1)
-        [HideInInspector]_Radius ("Radius", float) = 5
+        [HideInInspector]_Radius ("Radius", float) = 5 
+        [HideInInspector]_FlickerColor ("Inner flicker color", Color) = (1,1,1,1)
+        [HideInInspector]_FlickerRadius ("Inner flicker radius", float) = 1
         [HideInInspector]_NormalThreshold ("Normal threshold", Range(0, 1)) = .1
-        [HideInInspector]_WaveRange ("Wave Range", Range(0,1)) = 0.5
-        [HideInInspector]_WaveSpeed ("Wave Speed", float) = 1 
+        [HideInInspector]_FlickerRange ("Flicker Range", Range(0,1)) = 0.5
+        [HideInInspector]_FlickerSpeed ("Flicker Speed", float) = 1 
         [HideInInspector]_Softness ("Softness", float) = 1 
+        [HideInInspector]_Noise ("Noise", 2D) = "white" {}
     }
     SubShader
     {
@@ -59,13 +62,16 @@ Shader "Unlit/FirelightPostProcessing"
             sampler2D _CameraDepthNormalsTexture;
             float4x4 _viewToWorld;
 
-            float4 _Color;
             float4 _PlayerPos;
+            float4 _Color;
             float _Radius;
+            float4 _FlickerColor;
+            float _FlickerRadius;
             float _NormalThreshold;
-            float _WaveRange; 
-            float _WaveSpeed;
+            float _FlickerRange; 
+            float _FlickerSpeed;
             float _Softness;
+            sampler2D _Noise;
 
             float spheresdf (float3 p, float3 center, float radius)
             {
@@ -96,10 +102,16 @@ Shader "Unlit/FirelightPostProcessing"
                 float3 L = normalize(_PlayerPos.rgb - wpos);
                 float3 N = normalize(normal); 
 
-                // get sin adjustment for firelight flicker effect
-                float wave = _Radius + sin(_Time.a * _WaveSpeed) * _WaveRange;
-                float sphereMask = spheresdf(wpos, _PlayerPos, wave)/_Softness;  
-                sphereMask = 1 - saturate(sphereMask); 
+                // get masks for flicker + outer color
+                float flicker = _FlickerRadius + tex2D(_Noise, float2(_Time.a * _FlickerSpeed, 0)) * _FlickerRange;
+                float flickerSphereMask = spheresdf(wpos, _PlayerPos, flicker)/_Softness;  
+                flickerSphereMask = 1 - saturate(flickerSphereMask);
+                // flickerSphereMask *=  step(_PlayerPos.y, wpos.y); //mask out pixels below player
+
+                float wave = _Radius + sin(_Time.a * _FlickerSpeed) * _FlickerRange;
+                float sphereMask = spheresdf(wpos, _PlayerPos, _Radius)/_Softness;  
+                sphereMask = 1 - saturate(sphereMask) - flickerSphereMask; 
+                // sphereMask *= step(_PlayerPos.y, wpos.y); //mask out pixels below player
 
                 float normalMask = saturate(dot(L,N));
                 
@@ -107,10 +119,10 @@ Shader "Unlit/FirelightPostProcessing"
                 normalMask = saturate(iLerp(_NormalThreshold - 0.1, _NormalThreshold, normalMask));
 
                 
-                float mask = sphereMask * normalMask; 
+                float mask = flickerSphereMask * normalMask; 
                 float4 source = tex2D(_MainTex, i.uv);
                 
-                return source + mask * _Color; 
+                return source + flickerSphereMask * normalMask * _FlickerColor + sphereMask * normalMask * _Color; 
             }
             ENDCG
         }

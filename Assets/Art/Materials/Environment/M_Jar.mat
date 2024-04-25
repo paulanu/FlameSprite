@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Emission: 2.7
+    - _Emission: 5
     - _FresnelSize: 0.464
     - _Gloss: 0.313
     - _InnerFresnelSize: 0.827

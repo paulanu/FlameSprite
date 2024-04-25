@@ -5,7 +5,9 @@ Shader "Custom/HeightGradientColor"
         _StartColor ("Gradient start", Color) = (1,1,1,1)
         _EndColor ("Gradient end", Color) = (0,0,0,0)
         _StartHeight ("Lowest height", float) = 5
-        _EndHeight ("Tallest height", float) = 20 
+        _EndHeight ("Tallest height", float) = 20
+        _RimLightingColor ("Rim Lighting Color", Color) = (1,1,1,1)
+        _RimLightingStrength ("Rim Lighting Strength", float) = 5
     }
     SubShader
     {
@@ -22,10 +24,13 @@ Shader "Custom/HeightGradientColor"
         struct Input
         {
             float3 color;
+            float3 viewDir;
         };
 
         float4 _StartColor; 
         float4 _EndColor; 
+        float4 _RimLightingColor; 
+        float _RimLightingStrength; 
         float _StartHeight; 
         float _EndHeight; 
 
@@ -44,8 +49,11 @@ Shader "Custom/HeightGradientColor"
         }
 
         void surf (Input IN, inout SurfaceOutputStandard o)
-        {
-            o.Albedo = IN.color;
+        {   
+            float fresnel = 1 - saturate(dot(normalize(IN.viewDir), o.Normal));
+            float3 rimLighting = pow(fresnel, _RimLightingStrength);
+
+            o.Albedo = lerp(IN.color, _RimLightingColor, rimLighting);
             o.Metallic = 0;
             o.Smoothness = 0;
             o.Alpha = 1;

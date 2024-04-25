@@ -25,9 +25,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _EndHeight: 12.4
+    - _RimLightingStrength: 4.97
     - _StartHeight: 9.17
     m_Colors:
     - _EndColor: {r: 0.34118015, g: 0.24995552, b: 0.38679248, a: 0}
     - _Gradient: {r: 1, g: 1, b: 1, a: 1}
+    - _RimLightingColor: {r: 0.27643126, g: 0.1462264, b: 0.5849056, a: 1}
     - _StartColor: {r: 0.17475082, g: 0.18194574, b: 0.31132078, a: 1}
   m_BuildTextureStacks: []

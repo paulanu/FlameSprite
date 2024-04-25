@@ -47,6 +47,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: 480db183e9f8c9540968cb3274b9d6b9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -60,28 +64,32 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _FlickerRadius: 3.17
+    - _FlickerRange: 0.5
+    - _FlickerSpeed: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _NormalCutoff: 0
-    - _NormalThreshold: 0.339
+    - _NormalThreshold: 0.33
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Radius: 4.65
+    - _Radius: 4.97
     - _Range: 5
     - _SmoothnessTextureChannel: 0
     - _Softness: 0.5
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaveRange: 1.01
-    - _WaveSpeed: 1.19
+    - _WaveRange: 0.39
+    - _WaveSpeed: 0.21
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.5, g: 0.09198114, b: 0.09198114, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PlayerPos: {r: -5.664, g: 1.051, b: -0.81, a: 0}
+    - _FlickerColor: {r: 0.6784314, g: 0.23907356, b: 0, a: 0}
+    - _PlayerPos: {r: -5.664, g: 0.987, b: -0.81, a: 0}
     - _Position: {r: -3.01, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
